@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chúc mừng 20/10</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --rose-deep: #8b1638;
+      --rose-pink: #ff7aa2;
+      --rose-rose: #c62855;
+      --gold: #ffd700;
+      --card-bg: rgba(255, 250, 248, 0.96);
+    }
+    *{box-sizing:border-box; user-select: none; margin:0; padding:0;}
+    html,body{height:100%; overflow:hidden; font-family:"Noto Sans", sans-serif;}
+    
+    /* === TRANG CHUNG === */
+    .page {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      transition: opacity 0.7s ease, transform 0.7s ease;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.92);
+    }
+    .page.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
+      z-index: 1;
+    }
+    
+    /* === TRANG 1: THIỆP === */
+    #page1 {
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(255,235,240,0.85), transparent 15%),
+        radial-gradient(1000px 500px at 90% 90%, rgba(255,245,240,0.85), transparent 20%),
+        linear-gradient(180deg, #fff0f3 0%, #ffe7ee 40%, #fff6f8 100%);
+      cursor: pointer;
+    }
+    .scene {
+      position: relative;
+      z-index: 2;
+      width: min(92%, 820px);
+    }
+    .card {
+      background: var(--card-bg);
+      padding: 40px 36px 32px;
+      border-radius: 24px;
+      border: 6px solid rgba(255,220,230,0.7);
+      box-shadow: 0 20px 50px rgba(182,49,102,0.15);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+    .garland {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(90deg, rgba(255,235,245,0.95), rgba(255,240,230,0.95));
+      padding: 10px 24px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+      font-weight: 700;
+      color: var(--rose-deep);
+    }
+    .main-flower {
+      font-size: 72px;
+      margin: 8px 0 16px;
+      display: inline-block;
+      animation: gentlePop 1.8s ease-out forwards;
+    }
+    @keyframes gentlePop {
+      0% { transform: scale(0.8); opacity: 0; }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      color: var(--rose-rose);
+      margin-bottom: 10px;
+    }
+    .click-hint {
+      margin-top: 20px;
+      color: var(--rose-rose);
+      font-size: 1rem;
+      font-weight: 600;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+    .message-container {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 1s ease, opacity 0.8s ease, margin-top 0.6s ease;
+    }
+    .card.opened .message-container {
+      max-height: 600px;
+      opacity: 1;
+      margin-top: 24px;
+    }
+    .message {
+      font-size: 1.1rem;
+      line-height: 2;
+      color: var(--rose-deep);
+    }
+    .wish {
+      margin-top: 20px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .hearts {
+      margin-top: 20px;
+      font-size: 32px;
+      letter-spacing: 10px;
+    }
+    .page-nav {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      background: linear-gradient(135deg, #ff8fa1, #ffb347);
+      border: none;
+      padding: 12px 26px;
+      border-radius: 999px;
+      cursor: pointer;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      box-shadow: 0 8px 24px rgba(198,40,85,0.15);
+      transition: all 0.3s ease;
+    }
+    .btn:hover { transform: translateY(-3px); }
+    .btn--alt {
+      background: linear-gradient(135deg, #c62855, #8b1638);
+    }
+    
+    /* === TRANG 2: HIỂN THỊ ẢNH === */
+    #page2 {
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+      padding: 0;
+      flex-direction: column;
+    }
+    .photo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 24px;
+    }
+    .main-photo {
+      max-width: 90%;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 16px;
+      box-shadow: 0 0 40px rgba(255,255,255,0.15);
+      border: 4px solid rgba(255,255,255,0.1);
+    }
+    #page2 .page-nav {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      margin: 0;
+    }
+    
+    @media (max-width:480px){
+      .card { padding: 28px 20px; }
+      .main-flower { font-size: 56px; }
+      .main-photo { max-width: 95%; border-radius: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- === TRANG 1: THIỆP === -->
+  <div id="page1" class="page active">
+    <main class="scene">
+      <section id="greetingCard" class="card">
+        <div class="garland">
+          <span>🌹</span> Chúc mừng 20/10 <span>🌹</span>
+        </div>
+        <div class="main-flower">🌹</div>
+        <h1>Chúc mừng ngày Phụ nữ!</h1>
+        <p id="clickHint" class="click-hint">👆 Nhấn vào thiệp để mở lời chúc</p>
+        <div class="message-container">
+          <p class="message">
+            Gửi đến tất cả những người phụ nữ tuyệt vời:<br>
+            Chúc các bạn luôn xinh đẹp, rạng ngời và tràn đầy niềm vui.<br>
+            Mong mỗi ngày đều ngập tràn yêu thương, bình yên và hạnh phúc.<br>
+            Các bạn xứng đáng được yêu chiều và trân quý nhất trên đời.
+          </p>
+          <p class="wish">💖 Mãi tỏa sáng theo cách riêng của mình! 💖</p>
+          <div class="hearts">💐 💕 🌸 💖</div>
+          <div class="page-nav">
+            <button id="goPage2" class="btn btn--alt">✨ Xem Ảnh ✨</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- === TRANG 2: ẢNH === -->
+  <div id="page2" class="page">
+    <div class="photo-container">
+      <img src="https://p3-flow-image-sign.byteimg.com/ocean-cloud-tos/74d190083089489291999111200f999c~tplv-ii0cwwkcx9-resize-crop-v1:0:0:960:1280:0:0.jpeg?lk3s=19ff00fe&x-expires=2067585722&x-signature=xxxxxx" alt="Ảnh" class="main-photo" onerror="this.src='https://i.imgur.com/9Z7Wx8L.jpg'">
+    </div>
+    <div class="page-nav">
+      <button id="goPage1" class="btn">🌸 Trở về Trang Chính</button>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const card = document.getElementById('greetingCard');
+      const clickHint = document.getElementById('clickHint');
+      let cardOpened = false;
+      
+      card.addEventListener('click', () => {
+        if(!cardOpened){
+          cardOpened = true;
+          card.classList.add('opened');
+          clickHint.style.opacity = '0';
+          setTimeout(() => clickHint.style.display = 'none', 400);
+        }
+      });
+      
+      document.getElementById('goPage2').addEventListener('click', (e) => {
+        e.stopPropagation();
+        document.getElementById('page1').classList.remove('active');
+        document.getElementById('page2').classList.add('active');
+      });
+      
+      document.getElementById('goPage1').addEventListener('click', () => {
+        document.getElementById('page2').classList.remove('active');
+        document.getElementById('page1').classList.add('active');
+      });
+      
+      document.addEventListener('keydown', (e) => {
+        if(e.key === '1') document.getElementById('goPage1').click();
+        if(e.key === '2') document.getElementById('goPage2').click();
+        if(e.key === 'Enter' && currentPage === 1 && !cardOpened) card.click();
+      });
+    })();
+  </script>
+</body>
+</html>
